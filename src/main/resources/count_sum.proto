@@ -1,0 +1,20 @@
+syntax = "proto2";
+option java_package = "com.orieange.hbase.coprocessor";
+option java_outer_classname = "SumRows";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message SumRequest {
+    required string family = 2;
+    required string column = 3;
+}
+
+message SumResponse {
+    required int64 count = 1 [default=0];
+}
+
+service SumRowService {
+    rpc getSum(SumRequest)
+    returns (SumResponse);
+}
