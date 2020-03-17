@@ -1,10 +1,13 @@
-package com.orieange.hbase.coprocessor;
+package com.orieange.hbase.coprocessor.endpoint;
 
 import org.apache.hadoop.hbase.client.coprocessor.Batch;
 import org.apache.hadoop.hbase.ipc.CoprocessorRpcUtils;
 
 import java.io.IOException;
 
+/**
+ * endpoint客户端（回调方法）
+ */
 public class GetSumCallable implements Batch.Call<SumRows.SumRowService, Integer>{
 
     private SumRows.SumRequest request;

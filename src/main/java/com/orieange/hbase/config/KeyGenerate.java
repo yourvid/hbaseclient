@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 /**
  * 生成rowkey hashcode
  */
-public class Util {
+public class KeyGenerate {
 
     public static String getRegNo(String callerId , String callTime){
         //区域00-99

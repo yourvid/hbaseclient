@@ -1,5 +1,5 @@
 syntax = "proto2";
-option java_package = "com.orieange.hbase.coprocessor";
+option java_package = "com.orieange.hbase.coprocessor.endpoint";
 option java_outer_classname = "SumRows";
 option java_generic_services = true;
 option java_generate_equals_and_hash = true;

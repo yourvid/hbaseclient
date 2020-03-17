@@ -1,4 +1,4 @@
-package com.orieange.hbase.config;
+package com.orieange.hbase.coprocessor.observer;
 
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CoprocessorEnvironment;
@@ -19,7 +19,19 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 自定义Observer
+ * observer
+ *
+ * 这一类协处理器与触发器(trigger)类似：回调函数（也被称作钩子函数，hook）在一些特定事件发生时被执行。这些事件包括一些用户产生的事件，也包括服务器端内部自动产生的事件。
+ *
+ * 协处理器框架提供的接口如下
+ *
+ * RegionObserver：用户可以用这种的处理器处理数据修改事件，它们与表的region联系紧密。
+ *
+ * MasterObserver：可以被用作管理或DDL类型的操作，这些是集群级事件。
+ *
+ * WALObserver：提供控制WAL的钩子函数
+ *
+ * Observer提供了一些设计好的回调函数，每个操作在集群服务器端都可以被调用。
  */
 public class MyRegionObserver implements RegionObserver, RegionCoprocessor {
     @Override

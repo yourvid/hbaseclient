@@ -1,7 +1,5 @@
 package com.orieange.hbase.config;
 
-import com.orieange.hbase.coprocessor.GetSumCallable;
-import com.orieange.hbase.coprocessor.SumRows;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CompareOperator;

@@ -1,4 +1,4 @@
-package com.orieange.hbase.coprocessor;
+package com.orieange.hbase.coprocessor.endpoint;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +18,9 @@ import com.google.protobuf.RpcCallback;
 import com.google.protobuf.RpcController;
 import com.google.protobuf.Service;
 
-
+/**
+ * endpoint服务端
+ */
 @SuppressWarnings("all")
 public class GetSumEndpoint extends SumRows.SumRowService implements RegionCoprocessor{
 

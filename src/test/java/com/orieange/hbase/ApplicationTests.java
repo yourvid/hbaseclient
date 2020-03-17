@@ -2,8 +2,8 @@ package com.orieange.hbase;
 
 import com.orieange.hbase.config.HBaseClient;
 import com.orieange.hbase.config.HbaseConnectionFactory;
-import com.orieange.hbase.coprocessor.GetSumCallable;
-import com.orieange.hbase.coprocessor.SumRows;
+import com.orieange.hbase.coprocessor.endpoint.GetSumCallable;
+import com.orieange.hbase.coprocessor.endpoint.SumRows;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.Table;
