@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * observer
+ * observer协处理器
  *
  * 这一类协处理器与触发器(trigger)类似：回调函数（也被称作钩子函数，hook）在一些特定事件发生时被执行。这些事件包括一些用户产生的事件，也包括服务器端内部自动产生的事件。
  *

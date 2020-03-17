@@ -6,7 +6,7 @@ import org.apache.hadoop.hbase.ipc.CoprocessorRpcUtils;
 import java.io.IOException;
 
 /**
- * endpoint客户端（回调方法）
+ * endpoint协处理器客户端（回调方法）
  */
 public class GetSumCallable implements Batch.Call<SumRows.SumRowService, Integer>{
 
