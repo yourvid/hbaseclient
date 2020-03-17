@@ -10,14 +10,18 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class HbaseConnectionFactory {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private HbaseConfig config;
-    private static Connection connection;
-    private static Admin admin;
+    // 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。
+    private static ExecutorService executor = null;
+    private static Connection connection = null;
+    private static Admin admin = null;
 
     @PostConstruct
     private void init() {
@@ -25,7 +29,8 @@ public class HbaseConnectionFactory {
             return;
         }
         try {
-            connection = ConnectionFactory.createConnection(config.configuration());
+            executor = Executors.newFixedThreadPool(50);
+            connection = ConnectionFactory.createConnection(config.configuration(),executor);
             admin = connection.getAdmin();
         } catch (IOException e) {
             logger.error("HBase create connection failed: {}", e);
