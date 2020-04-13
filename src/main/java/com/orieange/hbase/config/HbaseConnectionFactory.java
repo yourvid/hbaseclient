@@ -28,7 +28,7 @@ public class HbaseConnectionFactory {
             return;
         }
         try {
-            executor = Executors.newFixedThreadPool(50);
+            executor = Executors.newFixedThreadPool(3);
             connection = ConnectionFactory.createConnection(config.configuration(),executor);
         } catch (IOException e) {
             logger.error("HBase create connection failed: {}", e);

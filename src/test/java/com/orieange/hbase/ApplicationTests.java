@@ -29,43 +29,43 @@ public class ApplicationTests {
     /**
      * 测试删除、创建表
      */
-    @Test
+//    @Test
     public void testGetValue() {
         String value = hBaseClient.getValue("tbl_abc", "mengday", "info", "age");
         System.out.println(value);
     }
 
-    @Test
+//    @Test
     public void testCreateTable() throws IOException {
         String tableName = "tbl_abc";
         hBaseClient.deleteTable(tableName);
         hBaseClient.createTable(tableName, new String[]{"cf1", "cf2"});
     }
 
-    @Test
+//    @Test
     public void dropTable() throws IOException {
         hBaseClient.deleteTable("tbl_abc");
     }
 
 
-    @Test
+//    @Test
     public void testInsertOrUpdate() throws IOException {
         hBaseClient.insertOrUpdate("tbl_abc", "rowKey1", "cf1", new String[]{"c1", "c2"}, new String[]{"v1", "v22"});
     }
 
-    @Test
+//    @Test
     public void testSelectOneRow() throws IOException {
         hBaseClient.selectOneRow("tbl_abc", "rowKey1");
     }
 
-    @Test
+//    @Test
     public void testScanTable() throws IOException {
         hBaseClient.scanTable("tbl_abc", "rowKey1");
     }
 
-    @Test
+//    @Test
     public void tableExists() throws IOException {
-        Boolean result = hBaseClient.tableExists("tbl_abc");
+        Boolean result = hBaseClient.tableExists("test1");
         System.out.println(result);
     }
 
@@ -74,7 +74,7 @@ public class ApplicationTests {
      *
      * @throws Throwable
      */
-    @Test
+//    @Test
     public void testCoprocessor() throws Throwable {
         Connection connection = hbaseConnectionFactory.getConnection();
         try (final Table table = connection.getTable(TableName.valueOf("account"))) {
@@ -101,9 +101,9 @@ public class ApplicationTests {
         String tableName = "yl_data";
         String[] families = {"data"};
         DecimalFormat df = new DecimalFormat("00");
-        String[] splits = new String[]{};
-        for (int i = 0; i < regionCount-1 ; i++) {
-            String split = df.format(i + 1);
+        String[] splits = new String[regionCount];
+        for (int i = 0; i < regionCount ; i++) {
+            String split = df.format(i);
             splits[i] = split;
         }
         hBaseClient.createTable(tableName, families, splits);

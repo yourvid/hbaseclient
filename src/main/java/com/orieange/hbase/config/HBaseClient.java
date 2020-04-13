@@ -59,11 +59,13 @@ public class HBaseClient {
         descriptorBuilder.setColumnFamilies(columnFamilyList);
         TableDescriptor tableDescriptor = descriptorBuilder.build();
 
-        byte[][] splitKeysBytes = new byte[][]{};
+        byte[][] splitKeysBytes = new byte[splitKeys.length][];
+        int i = 0;
         for(String split : splitKeys){
-            int i = 0;
-            byte[] bytes = Bytes.toBytes(split);
-            splitKeysBytes[i ++] = bytes;
+            if (!StringUtils.isBlank(split)) {
+                byte[] bytes = Bytes.toBytes(split);
+                splitKeysBytes[i ++] = bytes;
+            }
         }
         admin.createTable(tableDescriptor,splitKeysBytes);
     }
