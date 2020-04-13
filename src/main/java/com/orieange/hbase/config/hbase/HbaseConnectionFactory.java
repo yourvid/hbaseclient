@@ -1,6 +1,5 @@
-package com.orieange.hbase.config;
+package com.orieange.hbase.config.hbase;
 
-import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.slf4j.Logger;

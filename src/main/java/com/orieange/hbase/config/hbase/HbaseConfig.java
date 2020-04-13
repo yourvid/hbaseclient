@@ -1,4 +1,4 @@
-package com.orieange.hbase.config;
+package com.orieange.hbase.config.hbase;
 
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

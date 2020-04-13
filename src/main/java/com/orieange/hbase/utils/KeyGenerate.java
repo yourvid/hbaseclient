@@ -1,4 +1,4 @@
-package com.orieange.hbase.config;
+package com.orieange.hbase.utils;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;

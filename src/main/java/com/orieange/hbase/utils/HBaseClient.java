@@ -1,5 +1,6 @@
-package com.orieange.hbase.config;
+package com.orieange.hbase.utils;
 
+import com.orieange.hbase.config.hbase.HbaseConnectionFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CompareOperator;

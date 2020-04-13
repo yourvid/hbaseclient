@@ -1,18 +1,16 @@
-package com.orieange.hbase.config;
+package com.orieange.hbase.utils;
 
-import org.apache.hadoop.hbase.Cell;
+import com.orieange.hbase.config.hbase.HbaseConnectionFactory;
 import org.apache.hadoop.hbase.CompareOperator;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.filter.*;
-import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 
 @DependsOn("hbaseConfig")
 @Component

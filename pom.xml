@@ -15,12 +15,16 @@
         <boot.version>2.2.2.RELEASE</boot.version>
         <hadoop.version>3.2.1</hadoop.version>
         <hbase.version>2.1.8</hbase.version>
+        <phoenix.version>5.0.0-HBase-2.0</phoenix.version>
         <fastjson.version>1.2.58</fastjson.version>
         <jackson.version>2.9.2</jackson.version>
         <lombok.version>1.18.4</lombok.version>
+        <mybatisplus.version>3.3.1.tmp</mybatisplus.version>
+        <druid.version>1.1.10</druid.version>
     </properties>
 
     <dependencies>
+        <!-- hadoop-->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
@@ -42,7 +46,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+        <!-- hbase -->
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
@@ -71,6 +75,22 @@
             <version>2.5.0</version>
         </dependency>
 
+        <!-- phoenix -->
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-core</artifactId>
+            <version>${phoenix.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+
+        <!-- springboot-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -84,6 +104,19 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- mybatis-plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatisplus.version}</version>
+        </dependency>
+
 
     </dependencies>
 
