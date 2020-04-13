@@ -22,7 +22,7 @@ public class HBaseClient {
     private HbaseConnectionFactory hbaseConnectionFactory;
 
     public void createTable(String tableName, String[] columnFamilies) throws IOException {
-        Admin admin = hbaseConnectionFactory.getAdmin();
+        Admin admin = hbaseConnectionFactory.getConnection().getAdmin();
         TableName name = TableName.valueOf(tableName);
 
         boolean isExists = this.tableExists(tableName);
@@ -39,6 +39,33 @@ public class HBaseClient {
         descriptorBuilder.setColumnFamilies(columnFamilyList);
         TableDescriptor tableDescriptor = descriptorBuilder.build();
         admin.createTable(tableDescriptor);
+    }
+
+    public void createTable(String tableName, String[] columnFamilies ,String[] splitKeys) throws IOException {
+        Admin admin = hbaseConnectionFactory.getConnection().getAdmin();
+        TableName name = TableName.valueOf(tableName);
+
+        boolean isExists = this.tableExists(tableName);
+        if (isExists) {
+            throw new TableExistsException(tableName + "is exists!");
+        }
+
+        TableDescriptorBuilder descriptorBuilder = TableDescriptorBuilder.newBuilder(name);
+        List<ColumnFamilyDescriptor> columnFamilyList = new ArrayList<>();
+        for (String columnFamily : columnFamilies) {
+            ColumnFamilyDescriptor columnFamilyDescriptor = ColumnFamilyDescriptorBuilder.newBuilder(columnFamily.getBytes()).build();
+            columnFamilyList.add(columnFamilyDescriptor);
+        }
+        descriptorBuilder.setColumnFamilies(columnFamilyList);
+        TableDescriptor tableDescriptor = descriptorBuilder.build();
+
+        byte[][] splitKeysBytes = new byte[][]{};
+        for(String split : splitKeys){
+            int i = 0;
+            byte[] bytes = Bytes.toBytes(split);
+            splitKeysBytes[i ++] = bytes;
+        }
+        admin.createTable(tableDescriptor,splitKeysBytes);
     }
 
     public void insertOrUpdate(String tableName, String rowKey, String columnFamily, String column, String value) throws IOException {
@@ -79,7 +106,7 @@ public class HBaseClient {
     }
 
     public void deleteTable(String tableName) throws IOException {
-        Admin admin = hbaseConnectionFactory.getAdmin();
+        Admin admin = hbaseConnectionFactory.getConnection().getAdmin();
         boolean isExists = this.tableExists(tableName);
         if (!isExists) {
             return;
@@ -173,7 +200,7 @@ public class HBaseClient {
      * @throws IOException
      */
     public boolean tableExists(String tableName) throws IOException {
-        Admin admin = hbaseConnectionFactory.getAdmin();
+        Admin admin = hbaseConnectionFactory.getConnection().getAdmin();
         TableName[] tableNames = admin.listTableNames();
         if (tableNames != null && tableNames.length > 0) {
             for (int i = 0; i < tableNames.length; i++) {

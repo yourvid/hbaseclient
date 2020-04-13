@@ -1,21 +1,21 @@
 package com.orieange.hbase.config;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 生成rowkey hashcode
  */
 public class KeyGenerate {
 
-    public static String getRegNo(String callerId , String callTime){
-        //区域00-99
-        int hash = (callerId + callTime.substring(0, 6)).hashCode();
+    public static String getDataKey(String hiddenNo,String equipNo, Date collectionTime){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        DecimalFormat df = new DecimalFormat("00");
+        int hash = (equipNo + sdf.format(collectionTime)).hashCode();
         hash =(hash & Integer.MAX_VALUE) % 100;
-
-        //hash区域号
-        DecimalFormat df = new DecimalFormat();
-        df.applyPattern("00");
         String regNo = df.format(hash);
-        return regNo ;
+        String key = regNo+collectionTime.getTime()+hiddenNo+equipNo;
+        return key;
     }
 }

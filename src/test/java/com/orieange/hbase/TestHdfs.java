@@ -10,7 +10,9 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 /**
  *测试hdfs
@@ -59,5 +61,18 @@ public class TestHdfs {
         IOUtils.copyBytes(fis,fout,1024);
         fout.close();
         fis.close();
+    }
+
+    @Test
+    public void generateSplitFile() throws IOException {
+        int regionCount = 100;
+        DecimalFormat df = new DecimalFormat("00");
+        FileWriter fw = new FileWriter("d:\\splitkeys.txt",false);
+        for (int i = 0; i < regionCount-1; i++) {
+            String split = df.format(i + 1);
+            fw.write(split+"\r\n");
+        }
+        fw.flush();
+        fw.close();
     }
 }

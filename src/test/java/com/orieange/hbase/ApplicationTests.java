@@ -14,11 +14,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes={Application.class})
+@SpringBootTest(classes = {Application.class})
 public class ApplicationTests {
     @Autowired
     private HBaseClient hBaseClient;
@@ -38,7 +39,7 @@ public class ApplicationTests {
     public void testCreateTable() throws IOException {
         String tableName = "tbl_abc";
         hBaseClient.deleteTable(tableName);
-        hBaseClient.createTable(tableName, new String[] {"cf1", "cf2"});
+        hBaseClient.createTable(tableName, new String[]{"cf1", "cf2"});
     }
 
     @Test
@@ -70,6 +71,7 @@ public class ApplicationTests {
 
     /**
      * 协处理器测试
+     *
      * @throws Throwable
      */
     @Test
@@ -88,4 +90,24 @@ public class ApplicationTests {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 命令：create 'yl_data','data',SPLITS_FILE=>'/usr/splitkeys.txt'
+     * @throws Exception
+     */
+    @Test
+    public void createBaseTable() throws Exception {
+        int regionCount = 100;
+        String tableName = "yl_data";
+        String[] families = {"data"};
+        DecimalFormat df = new DecimalFormat("00");
+        String[] splits = new String[]{};
+        for (int i = 0; i < regionCount-1 ; i++) {
+            String split = df.format(i + 1);
+            splits[i] = split;
+        }
+        hBaseClient.createTable(tableName, families, splits);
+    }
+
+
 }
