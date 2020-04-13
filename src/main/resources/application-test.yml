@@ -1,0 +1,6 @@
+hbase:
+  config:
+    hbase.zookeeper.quorum: 10.10.254.131:31336
+    hbase.zookeeper.port: 31336
+    hbase.zookeeper.znode: /hbase
+    hbase.client.keyvalue.maxsize: 1572864000

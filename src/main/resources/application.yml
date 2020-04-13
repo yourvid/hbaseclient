@@ -2,7 +2,7 @@ server:
   port: 97
 spring:
   profiles:
-    active: dev
+    active: test
   application:
     name: hbaseclient
 
