@@ -6,5 +6,9 @@ hbase:
     hbase.client.keyvalue.maxsize: 1572864000
   phoenix:
     datasource:
-      url: 192.168.100.201:2181
+      url: 10.10.254.131:31336
       driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+# Logger Config
+logging:
+  level:
+    com.baomidou.mybatisplus.samples.quickstart: debug

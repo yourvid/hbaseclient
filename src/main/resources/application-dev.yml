@@ -5,6 +5,9 @@ hbase:
     hbase.zookeeper.znode: /hbase
     hbase.client.keyvalue.maxsize: 1572864000
   phoenix:
-    datasource:
-      url: 192.168.100.201:2181
-      driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+    datasource.url: 192.168.100.201:2181
+    datasource.driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+# Logger Config
+logging:
+  level:
+    com.baomidou.mybatisplus.samples.quickstart: debug
