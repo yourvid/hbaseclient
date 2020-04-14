@@ -36,7 +36,6 @@ public class HbasePhoenixDataSourceConfig {
     @Value("${hbase.phoenix.datasource.url}")
     private String url;
 
-
     @Value("${hbase.phoenix.datasource.driverClassName}")
     private String driverClass;
 
@@ -46,17 +45,6 @@ public class HbasePhoenixDataSourceConfig {
         dataSource.setDriverClassName(driverClass);
         dataSource.setUrl(url);
         return dataSource;
-    }
-
-    @Bean(name = TRANSACTION_MANAGER)
-    public DataSourceTransactionManager hbasePhoenixTransactionManager(@Qualifier(DATA_SOURCE) DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
-    }
-
-    @Bean(name = SQL_SESSION_TEMPLATE)
-    public SqlSessionTemplate sqlSessionTemplate(@Qualifier(SESSION_FACTORY) SqlSessionFactory sqlSessionFactory)
-            throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactory);
     }
 
     @Bean(name = HBASEPHOENIX_SQL_SESSION_FACTORY)
@@ -84,4 +72,17 @@ public class HbasePhoenixDataSourceConfig {
 //                .getResources(HbasePhoenixDataSourceConfig.MAPPER_LOCATION));
 //        return sessionFactory.getObject();
 //    }
+
+    @Bean(name = TRANSACTION_MANAGER)
+    public DataSourceTransactionManager hbasePhoenixTransactionManager(@Qualifier(DATA_SOURCE) DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Bean(name = SQL_SESSION_TEMPLATE)
+    public SqlSessionTemplate sqlSessionTemplate(@Qualifier(SESSION_FACTORY) SqlSessionFactory sqlSessionFactory)
+            throws Exception {
+        return new SqlSessionTemplate(sqlSessionFactory);
+    }
+
+
 }

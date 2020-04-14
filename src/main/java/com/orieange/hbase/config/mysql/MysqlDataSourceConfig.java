@@ -34,7 +34,7 @@ public class MysqlDataSourceConfig {
 
     @Bean(name = DATA_SOURCE)
     @Primary   //配置默认数据源
-    @ConfigurationProperties(prefix = "spring.datasource.druid.master")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.mysql")
     public DataSource dataSource() {
         return new DruidDataSource();
     }
