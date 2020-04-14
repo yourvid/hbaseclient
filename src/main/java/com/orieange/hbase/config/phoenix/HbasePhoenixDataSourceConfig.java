@@ -23,8 +23,8 @@ import javax.sql.DataSource;
 /**
  * @描述: 数据源模版，phoenix只能通过jdbctemplte调用，对mybatis支持不好，这里mybatisplus只能用来管理数据源
  */
-@Configuration
-@MapperScan(basePackages = HbasePhoenixDataSourceConfig.PACKAGE,sqlSessionFactoryRef = HbasePhoenixDataSourceConfig.HBASEPHOENIX_SQL_SESSION_FACTORY)
+//@Configuration
+//@MapperScan(basePackages = HbasePhoenixDataSourceConfig.PACKAGE,sqlSessionFactoryRef = HbasePhoenixDataSourceConfig.HBASEPHOENIX_SQL_SESSION_FACTORY)
 public class HbasePhoenixDataSourceConfig {
     static final String HBASEPHOENIX_SQL_SESSION_FACTORY = "hbasePhoenixSqlSessionFactory";
     static final String PACKAGE = "com.orieange.hbase.dao.phoenix";

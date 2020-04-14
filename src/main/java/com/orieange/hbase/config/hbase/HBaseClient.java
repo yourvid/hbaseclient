@@ -1,4 +1,4 @@
-package com.orieange.hbase.utils;
+package com.orieange.hbase.config.hbase;
 
 import com.orieange.hbase.config.hbase.HbaseConnectionFactory;
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +14,8 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @DependsOn("hbaseConfig")
@@ -194,6 +196,9 @@ public class HBaseClient {
 //        }
         return rsacn;
     }
+
+
+
 
 
     /**
