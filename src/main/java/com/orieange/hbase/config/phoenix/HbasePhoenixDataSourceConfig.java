@@ -15,12 +15,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
 /**
- *@描述: hbase-phoenix 数据源模版
+ * @描述: 数据源模版，phoenix只能通过jdbctemplte调用，对mybatis支持不好，这里mybatisplus只能用来管理数据源
  */
 @Configuration
 @MapperScan(basePackages = HbasePhoenixDataSourceConfig.PACKAGE,sqlSessionFactoryRef = HbasePhoenixDataSourceConfig.HBASEPHOENIX_SQL_SESSION_FACTORY)
@@ -28,10 +29,9 @@ public class HbasePhoenixDataSourceConfig {
     static final String HBASEPHOENIX_SQL_SESSION_FACTORY = "hbasePhoenixSqlSessionFactory";
     static final String PACKAGE = "com.orieange.hbase.dao.phoenix";
     static final String MAPPER_LOCATION = "classpath*:/mapper/hbase/*.xml";
-    static final String SESSION_FACTORY = "hbasePhoenixSqlSessionFactory";
     static final String TRANSACTION_MANAGER = "hbasePhoenixTransactionManager";
     static final String DATA_SOURCE = "hbasePhoenixDataSource";
-    static final String SQL_SESSION_TEMPLATE = "hbasePhoenixSqlSessionTemplate";
+    static final String JDBC_TEMPLATE = "hbasePhoenixTemplate";
 
     @Value("${hbase.phoenix.datasource.url}")
     private String url;
@@ -78,10 +78,12 @@ public class HbasePhoenixDataSourceConfig {
         return new DataSourceTransactionManager(dataSource);
     }
 
-    @Bean(name = SQL_SESSION_TEMPLATE)
-    public SqlSessionTemplate sqlSessionTemplate(@Qualifier(SESSION_FACTORY) SqlSessionFactory sqlSessionFactory)
-            throws Exception {
-        return new SqlSessionTemplate(sqlSessionFactory);
+    @Bean(name = JDBC_TEMPLATE)
+    public JdbcTemplate jdbcTemplate() {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.setDataSource(hbasePhoenixDataSource());
+        jdbcTemplate.setLazyInit(false);
+        return jdbcTemplate;
     }
 
 
