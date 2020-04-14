@@ -7,6 +7,23 @@ hbase:
   phoenix:
     datasource.url: 192.168.100.201:2181
     datasource.driverClassName: org.apache.phoenix.jdbc.PhoenixDriver
+#mysql--平台数据库配置
+spring.datasource.druid.mysql.url: jdbc:mysql://10.30.0.160:3306/dz_web?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8
+spring.datasource.druid.mysql.driver-class-name: com.mysql.cj.jdbc.Driver
+spring.datasource.druid.mysql.username: root
+spring.datasource.druid.mysql.password: 123456
+spring.datasource.druid.mysql.initial-size: 3
+spring.datasource.druid.mysql.max-active: 20
+spring.datasource.druid.mysql.min-idle: 3
+spring.datasource.druid.mysql.max-wait: 60000
+spring.datasource.druid.mysql.time-between-eviction-runs-millis: 50000
+spring.datasource.druid.mysql.min-evictable-idle-time-millis: 80000
+spring.datasource.druid.mysql.max-evictable-idle-time-millis: 100000
+spring.datasource.druid.mysql.validation-query: select 'x'
+spring.datasource.druid.mysql.validation-query-timeout: 10
+spring.datasource.druid.mysql.test-on-borrow: true
+spring.datasource.druid.mysql.test-on-return: true
+spring.datasource.druid.mysql.test-while-idle: true
 # Logger Config
 logging:
   level:
